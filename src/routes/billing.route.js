@@ -1,13 +1,12 @@
 const express = require('express');
-const router = express.Router();
+const routerbilling = express.Router();
 const billingController = require('../controllers/billing.controller');
 const validate = require('../middleware/validate');
-const { createBillingSchema } = require('../schemas/billingSchema');
 
-router.post('/', validate(createBillingSchema), billingController.createBilling);
-router.get('/', billingController.listBillings);
-router.get('/:id', billingController.getBilling);
-router.put('/:id',validate(createBillingSchema), billingController.updateBilling);
-router.delete('/:id', billingController.deleteBilling);
+routerbilling.post('/', billingController.createBilling);
+routerbilling.get('/', billingController.listBillings);
+routerbilling.get('/:id', billingController.getBilling);
+routerbilling.put('/:id', billingController.updateBilling);
+routerbilling.delete('/:id', billingController.deleteBilling);
 
-module.exports = router;
+module.exports = routerbilling;

@@ -4,7 +4,8 @@ const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
 const morgan = require('morgan');
-const routes = require('./routes/billing.route');
+const routerbilling = require('./routes/billing.route');
+const routesbillingData = require('./routes/billingData.route');
 
 const { errorHandler, notFound } = require('./middleware/errorHandler');
 
@@ -16,8 +17,8 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
 
-app.use('/api/billings', routes);
-
+app.use('/api/billings', routerbilling);
+app.use('/api/billing-data', routesbillingData);
 
 app.get('/', (req, res) => {
 	res.json({ status: 'ok', message: 'Backend_Billing root', api: '/api' });
